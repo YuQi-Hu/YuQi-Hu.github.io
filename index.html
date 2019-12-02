@@ -170,6 +170,94 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-搜索"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/12/02/搜索/">搜索算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/12/02/搜索/" class="article-date">
+	  <time datetime="2019-12-02T04:20:22.603Z" itemprop="datePublished">December 2, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h1><p>-<br>    &gt;搜索问题： 给定一个n个元素的序列或集合，在该序列或集合里面搜索一个特定的元素。<br>    &gt;搜索结果：成功 or 失败<br>    &gt;如果成功，则返回匹配记录在序列里的位置，也可返回其本身。否则，返回失败。</p>
+<h2 id="二叉搜索树-Binary-Search-Trees"><a href="#二叉搜索树-Binary-Search-Trees" class="headerlink" title="二叉搜索树(Binary Search Trees)"></a>二叉搜索树(Binary Search Trees)</h2><hr>
+<p>-<br>    &gt; 概述：一个结点与一个数据项相对应，除了数据项Object或数据项的指针之外，结点主要由关键字key域和指针域组成，及关键字key与指针left、right和p，三个指针分别指向该结点的左儿子、右儿子和父结点。<br>    &gt;&gt; Binary Search Trees 结点的关键字值应满足的性质：<br>    设x是二叉搜索树的一个结点，结点y位于结点x的子树中，x和y的关键字值应满足以下关系：<br>        如果y是x 的左子树中的一个结点，则y-&gt;key &lt;=  x-&gt;key<br>        如果y是x 的右子树中的一个结点，则y-&gt;key  &gt;  x-&gt;key<br>        总结起来就一句话：<br>        <strong>一个结点的值，大于等于它左子树的值，小于它右子树的值</strong></p>
+<p><strong>查询或修改操作的最坏情况时间代价与树高成正比</strong>  </p>
+<blockquote>
+<p>遍历：<br>    中序遍历(inorder tree walk)（前/后）<br>    查询：时间复杂度O(h)<br>    Tree_Serach(root,k)搜索bst上关键字值为k的结点<br>    求最小/大元的操作，只需从根开始沿着左指针/右指针一直搜索至某一结点x，其left或right指针为努力了，这是x-&gt;key为最小或最大<br>    求数据项的后继与前导项/插入/删除</p>
+</blockquote>
+<p><img src="%E5%9B%BE%E7%89%871.png" alt="二叉搜索树"></p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><hr>
+<p>-<br>    &gt;概念：一种二叉搜索树。每个节点有5个域:color（red/black）\key\left\right\p<br>    &gt;性质：<br>        1 每个节点的颜色域必为红或黑<br>        2 每个叶结点的颜色为黑<br>        3 如果一个结点的颜色为红，则其子节点全为黑结点<br>        4 从某一结点到其子树上任一个叶节点的所有简单路径，包含相同个数的黑色结点<br>    &gt;&gt; 从一个结点x到其子树的任一叶结点的简单路径上的黑结点个数成为结点的black高，写为bh(x)<br>    &gt;插入与删除算法<br>    &gt;&gt;在插入与删除节点时，为了使树重新具有红-黑性质，除了要改变结点间的指针链接关系外，还要对某些结点着色进行调整；对于节点间指针链接关系的修改归结为旋转操作，旋转是调整树的平衡状态的基本手段  </p>
+<pre><code>&gt;rb树是一种二叉搜索树，在其上进行的查询操作等一般与二叉搜索树的查询操作完全相同，而且算法简明，且它是平衡树在其上进行的所有操作的时间代价都是o(logn)阶的，rb树的树高h总是保持在一个很小的范围，h&lt;=2ln(n-1),rb树与一般的平衡机制不同，虽然它不需要计算平衡因子，但是红黑树性质保证了正科树的平衡性，集2绝大多数内部结点有两个子节点。  
+&gt;&gt;二分查找的思想，查找所需的最大次数等同于二叉查找树的高度  
+红黑树的存在：为了解决一般的二叉搜索树在插入时的弊端：多次插入新节点而导致的不平衡。红黑树是一种自平衡的二叉查找树。  
+保证一颗红黑树始终是红黑树的方法：变色和旋转，旋转分为左旋转和右旋转
+&gt;&gt; 变色：把红色结点变成黑色，或者把黑色结点变为红色。  
+左旋转：逆时针旋转红黑树的两个结点，使得父结点被自己的右孩子取代，而自己成为其左孩子，并把自己右孩子的左孩子当做自己的右孩子  
+右旋转：顺时针旋转红黑树，其余与上一条相反  </code></pre><h3 id="红黑树额外特性"><a href="#红黑树额外特性" class="headerlink" title="红黑树额外特性:"></a>红黑树额外特性:</h3><ol>
+<li><p>结点是红色或黑色</p>
+</li>
+<li><p>根结点是黑色</p>
+</li>
+<li><p>每个叶子结点都是黑色的空节点</p>
+</li>
+<li><p>每个红色结点的两个子节点都是黑色。（从每个叶子到根的所有路径上不能有两个连续的红色结点）</p>
+</li>
+<li><p>从任一结点到其每个叶子的所有路径都包含相同数目的黑色结点</p>
+</li>
+</ol>
+<h2 id="Hashing-技术"><a href="#Hashing-技术" class="headerlink" title="Hashing 技术"></a>Hashing 技术</h2><blockquote>
+<p>Hash方法的基本思想是：首先产生从可能的关键字集合U=[0…N-1]到存储空间地址集合T=[0…..m-1]的一个映射函数：h:U-[0….m-1] 于是要存储或检索关键字为属于u的数据项只需要计算函数h(x)，直接得到该数据项应在的地址<br> 解决冲突的策略：</p>
+</blockquote>
+<ol>
+<li>开地址法 单区法，不需要额外的存储空间，冲突项放在hash表T[0..m-1]的其他空位，数据元素存储位置的确定也通过hash函数计算。被称为线性查找hash函数（也就是被占了往后一格一格移动知道找到那个没有被占的位置，在原本的分区上</li>
+<li>二次hashing函数<br> 这种hash函数缓解了由于顺序查找空位造成的hash表的局部拥挤现象，适当选择h2(x)可以使查找序列也具有随机性，有利于提高查找算法的性能。<br><img src="%E5%9B%BE%E7%89%872.png" alt="二次哈希"><blockquote>
+<p>一般题目问法：查询比较次数/平均查找长度(每个数字的查找次数/数字个数)</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="链接法"><a href="#链接法" class="headerlink" title="链接法"></a>链接法</h2><blockquote>
+<p>闭地址法，打破了数据项存于hash表T[0….m-1]之内的限制。实际上是一个双区法，即冲突项不存于表内。这是的T是一个由m个链表组成的数组，T<a href="i=0,1,....m-1">i</a>表示映射到地址i的关键字序列，也可以吧T[i]作为整个链表的首项</p>
+</blockquote>
+<blockquote>
+<p>哈希算法的优劣分析：<br>    1. 优势：按内容寻址的检索方式时一种高级的联想式存储与检索技术。他的期望时间代价为O(1)阶，与数据集规模无关。<br>    2. 不足： 按内容寻址的方式决定了它是把数据散列到hash表中，因此它不适用于设计数据内容之间关系的查询。例如，最大/最小元之类的问题.最坏的时间代价为O(n)阶，当所查找的数字一直被占用的时候可能从头查到尾。</p>
+</blockquote>
+<p><img src="%E5%9B%BE%E7%89%873.png" alt="链接法"></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-algorithm"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -497,6 +585,18 @@ var themeMenus = {};
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/12/02/搜索/">搜索算法</a></h6>
+              <span>December 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/10/20/algorithm/">Algorithm</a></h6>
               <span>October 20, 2019</span>
             </div>
@@ -557,7 +657,7 @@ var themeMenus = {};
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
