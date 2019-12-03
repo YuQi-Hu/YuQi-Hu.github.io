@@ -285,7 +285,7 @@ body {
   font-weight: bold;
 }
 .article-inner {
-  background: #fff;
+  background: #fbfbfb;
   border: 1px solid #eef1f8;
   border-radius: 3px;
 }
@@ -1206,6 +1206,8 @@ a.article-title:hover {
 .article-entry pre,
 .article-entry .highlight {
   background: #f8f8f8;
+}
+border-radius: 5px {
   margin: 20px 0px;
   padding: 15px 20px;
   border-style: solid;
